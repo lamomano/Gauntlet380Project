@@ -30,6 +30,9 @@ public:
 	bool IsActive();
 	int GetPoolIndex();
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnActivation();
+
 protected:
 
 	bool active;

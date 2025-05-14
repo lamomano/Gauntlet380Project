@@ -15,7 +15,11 @@ void APooledObject::SetActive(bool isActive)
 {
     active = isActive;
     SetActorHiddenInGame(!isActive);
+    SetActorEnableCollision(isActive);
     GetWorldTimerManager().SetTimer(LifespanTimer, this, &APooledObject::Deactivate, lifespan, false);
+
+    if (isActive)
+        OnActivation();
 }
 
 
@@ -33,6 +37,8 @@ void APooledObject::SetPoolIndex(int givenIndex)
 void APooledObject::Deactivate()
 {
     SetActive(false);
+    SetActorEnableCollision(false);
+
     GetWorldTimerManager().ClearAllTimersForObject(this);
     OnPooledObjectDespawn.Broadcast(this);
 }
@@ -46,3 +52,6 @@ int APooledObject::GetPoolIndex()
 {
     return poolIndex;
 }
+
+
+
