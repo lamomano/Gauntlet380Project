@@ -86,7 +86,8 @@ APooledObject* UNewObjectPool::SpawnPooledObject()
 
 		// IsPendingKill() to avoid reusing dead objects or objects that will get deleted soon
 		// in other words this object is about to die, don't touch it
-		if (IsValid(poolableActor) && !poolableActor->IsPendingKill())
+		// so dont use IsPendingKill(), it will crash your project
+		if (IsValid(poolableActor))
 		{
 			// set it to false first just to make sure the object is still active
 			poolableActor->SetActive(false);

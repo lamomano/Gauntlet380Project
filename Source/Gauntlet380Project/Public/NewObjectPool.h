@@ -46,8 +46,6 @@ private:
 	APooledObject* CreateObjectClone(int givenIndex);
 
 protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
 
 	// use TArrays because they dynamically expand and shrink based on the amount of elements it is currently holding
 	// use UPROPERTY() to prevent pooled objects from being destroyed by garbage collector
